@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bz.mapper.UserMapper">
+    <insert id="insertUser" useGeneratedKeys="true" keyProperty="id" parameterType="User">
+        insert into user(
+        <if test="id != null and id != 0">id,</if>
+        <if test="name != null and name != ''">name,</if>
+        <if test="age != null and age != 0">age,</if>
+        <if test="password != null and password != ''">password</if>
+        ) values(
+        <if test="id != null and id != 0">#{id},</if>
+        <if test="name != null and name != ''">#{name},</if>
+        <if test="age != null and age != 0">#{age},</if>
+        <if test="password != null and password != ''">#{password}</if>
+        )
+    </insert>
+
+    <resultMap id="userResult" type="User">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="age" column="age"/>
+        <result property="password" column="password"/>
+    </resultMap>
+
+    <resultMap id="userVOResult" type="UserVO">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="age" column="age"/>
+        <result property="password" column="password"/>
+        <result property="something" column="some"/>
+    </resultMap>
+
+    <select id="selectUserByName" parameterType="String" resultMap="userResult">
+        select id,name,age,password from user
+        where
+        <if test="name != null and name != ''">
+            name = #{name}
+        </if>
+    </select>
+
+    <select id="selectUser" resultMap="userVOResult">
+        select id,name,age,password, 1 as some from user
+        where id = 1
+    </select>
+</mapper>
