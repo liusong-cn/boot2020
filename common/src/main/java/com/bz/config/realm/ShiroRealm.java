@@ -8,13 +8,15 @@ import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.annotation.Resource;
+
 /**
  * @author:11411
  * @date: 2020/8/10 16:43
  **/
 public class ShiroRealm extends AuthorizingRealm {
 
-    @Autowired
+    @Resource
     private UserMapper userMapper;
 
     @Override
@@ -26,8 +28,6 @@ public class ShiroRealm extends AuthorizingRealm {
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
         UsernamePasswordToken uptoken = (UsernamePasswordToken) token;
-//        String userName = (String) token.getPrincipal();
-//        String password = new String((char[]) token.getCredentials());
         String userName = uptoken.getUsername();
         String password = new String(uptoken.getPassword());
         User user = userMapper.findByUserName(userName);

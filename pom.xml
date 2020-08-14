@@ -132,7 +132,7 @@
       <!--Shiro核心框架 -->
       <dependency>
         <groupId>org.apache.shiro</groupId>
-        <artifactId>shiro-core</artifactId>
+        <artifactId>shiro-spring</artifactId>
         <version>${shiro.version}</version>
       </dependency>
 
