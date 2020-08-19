@@ -17,3 +17,5 @@ mybatis:
   type-aliases-package: com.bz
   mapper-locations: classpath:mapper/*Mapper.xml
   config-location: classpath:mybatis-config.xml
+system:
+  anno-url: /login

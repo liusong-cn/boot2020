@@ -33,21 +33,12 @@ public class LoginController {
     public ResponseBo login(String username, String password){
         //暂未考虑密码加密
 //        password = MD5Utils.encrypt(userName,password);
-        UsernamePasswordToken token = new UsernamePasswordToken(username,password);
-        Subject subject = SecurityUtils.getSubject();
-        try {
-            subject.login(token);
-            String jwtToken = JWTUtil.sign(username,password);
-            //自定义返回了jwt，下次可以凭借token验证
-            return ResponseBo.ok().put("token",jwtToken);
-        }catch (UnknownAccountException e){
-            return ResponseBo.error(e.getMessage());
-        }catch (IncorrectCredentialsException e){
-            return ResponseBo.error(e.getMessage());
-        }catch (LockedAccountException e){
-            return ResponseBo.error(e.getMessage());
-        }catch (AuthenticationException e){
-            return ResponseBo.error("认证失败");
+        //假定登录校验
+        if(username.equals("liusong") && password.equals("123")){
+            String token = JWTUtil.sign(username,password);
+            return ResponseBo.ok().put("token",token);
+        }else {
+            return ResponseBo.error("用户名或密码错误");
         }
     }
 
@@ -58,9 +49,14 @@ public class LoginController {
 
     @RequestMapping("/index")
     public String index(Model model){
-        User user = (User) SecurityUtils.getSubject().getPrincipal();
-        model.addAttribute("user",user);
+        String token = (String) SecurityUtils.getSubject().getPrincipal();
+        model.addAttribute("token",token);
         return "index";
+    }
+
+    @RequestMapping("/403")
+    public String unauth(){
+        return "403";
     }
 
     @RequestMapping("/permission")

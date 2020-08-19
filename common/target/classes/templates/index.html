@@ -5,8 +5,8 @@
     <title>首页</title>
 </head>
 <body>
-<p>你好！[[${user.name}]]</p>
+<p>你好！[[${token}]]</p>
 <a th:href="@{/logout}">注销</a>
-<a th:href="@{/permission}">权限测试</a>
+<a th:href="@{/permission(Token=${token})}">权限测试</a>
 </body>
 </html>

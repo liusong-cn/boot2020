@@ -30,6 +30,7 @@ public class JWTUtil {
      * @return
      */
     public static  boolean verify(String token, String username, String secret){
+        //secret等同于salt,可以拿密码或者其他作为salt，一般交由服务端保存
         Algorithm algorithm = Algorithm.HMAC256(secret);
         JWTVerifier jwtVerifier = JWT.require(algorithm)
                 .withClaim("username",username)

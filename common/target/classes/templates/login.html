@@ -28,7 +28,8 @@
                 dataType: "json",
                 success: function (r) {
                     if (r.code == 0) {
-                        location.href = ctx + 'index';
+                        window.localStorage.setItem("token",r.token);
+                        location.href = ctx + 'index?Token='+ localStorage.getItem("token");
                     } else {
                         alert(r.msg);
                     }

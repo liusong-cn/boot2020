@@ -46,8 +46,8 @@ public class ShiroConfig {
         filterchainDefinationMap.put("/","anon");
         //登录页面不拦截
         filterchainDefinationMap.put("/login","anon");
-        //配置其余url都需要认证
-        filterchainDefinationMap.put("/**","authc");
+        //配置其余url都需要认证,此处没有使用官方的authc这个filter,使用自定义的filter
+        filterchainDefinationMap.put("/**","jwt");
 
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterchainDefinationMap);
         return shiroFilterFactoryBean;

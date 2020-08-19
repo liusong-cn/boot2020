@@ -56,14 +56,16 @@ public class JWTFilter extends BasicHttpAuthenticationFilter {
     @Override
     protected boolean isLoginAttempt(ServletRequest request, ServletResponse response) {
         HttpServletRequest httpServletRequest = (HttpServletRequest) request;
-        String token = httpServletRequest.getHeader(TOKEN);
+        //一般应该token从header中取得，此处mock从parameter中取得
+        String token = httpServletRequest.getParameter(TOKEN);
+        System.out.println(httpServletRequest.getParameter("Token"));
         return token != null ;
     }
 
     @Override
     protected boolean executeLogin(ServletRequest request, ServletResponse response) throws Exception {
         HttpServletRequest httpServletRequest = (HttpServletRequest) request;
-        String token = httpServletRequest.getHeader(TOKEN);
+        String token = httpServletRequest.getParameter(TOKEN);
         JWTToken jwtToken = new JWTToken(token);
         try {
             getSubject(request,response).login(jwtToken);
@@ -87,4 +89,5 @@ public class JWTFilter extends BasicHttpAuthenticationFilter {
         }
         return super.preHandle(request, response);
     }
+
 }
