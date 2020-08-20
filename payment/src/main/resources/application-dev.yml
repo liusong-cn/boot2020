@@ -15,10 +15,6 @@ spring:
     nacos:
       discovery:
           server-addr: 192.168.5.210:8848
-nacos:
-  discovery:
-    server-addr: 192.168.5.210:8848
-
 mybatis:
   type-aliases-package: com.bz
   mapper-locations: classpath:mapper/*Mapper.xml
