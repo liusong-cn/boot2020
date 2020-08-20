@@ -90,4 +90,15 @@ public class JWTFilter extends BasicHttpAuthenticationFilter {
         return super.preHandle(request, response);
     }
 
+    @Override
+    protected boolean onAccessDenied(ServletRequest request, ServletResponse response) throws Exception {
+        /*通过查看源码，f7步进跟入，在其间接父类accesscontrolfilter中
+        return isAccessAllowed(request, response, mappedValue) || onAccessDenied(request, response, mappedValue);
+        在isAccessAllowed返回false之后，调用onAccessDenied方法
+        参考系统自带的authc过滤器，在非登录请求下直接重定向到登录页面
+        authc过滤器：FormAuthenticationFilter
+        */
+        saveRequestAndRedirectToLogin(request,response);
+        return false;
+    }
 }
