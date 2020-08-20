@@ -69,4 +69,10 @@ public class LoginController {
     public String permissionTest(){
         return "permission";
     }
+
+
+    @GetMapping("/403")
+    public String unauthc(){
+        return "403";
+    }
 }
