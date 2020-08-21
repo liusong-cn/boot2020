@@ -17,10 +17,10 @@ import org.springframework.web.client.RestTemplate;
  **/
 @SpringBootApplication
 @EnableDiscoveryClient
-public class Application {
+public class PaymentApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(Application.class,args);
+        SpringApplication.run(PaymentApplication.class,args);
     }
 
     @Bean
