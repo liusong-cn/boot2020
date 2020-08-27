@@ -12,6 +12,7 @@
     <module>payment</module>
       <module>order</module>
     <module>common</module>
+      <module>activity</module>
   </modules>
 
   <name>Maven</name>
