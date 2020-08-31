@@ -9,6 +9,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="common" />
         <module name="activity" />
+        <module name="gateway" />
         <module name="order" />
         <module name="payment" />
       </profile>

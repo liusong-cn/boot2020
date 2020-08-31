@@ -13,6 +13,7 @@
       <module>order</module>
     <module>common</module>
       <module>activity</module>
+      <module>gateway</module>
   </modules>
 
   <name>Maven</name>
