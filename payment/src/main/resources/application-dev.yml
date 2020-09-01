@@ -15,6 +15,14 @@ spring:
     nacos:
       discovery:
           server-addr: 192.168.5.210:8848
+  #zipkin服务地址
+  zipkin:
+    base-url: http://192.168.5.210:9411
+  sleuth:
+    sampler:
+      #设置slueth采样率，默认0.1
+      #1.0全部采样
+      probability: 1.0
 mybatis:
   type-aliases-package: com.bz
   mapper-locations: classpath:mapper/*Mapper.xml

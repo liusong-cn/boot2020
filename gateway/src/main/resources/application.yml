@@ -1,13 +1,15 @@
 spring:
   profiles:
-    active: my_route
+    active: param_route
   cloud:
     nacos:
       discovery:
         server-addr: 192.168.5.210:8848
----
+
 server:
   port: 9050
+---
+
 
 spring:
   profiles: method_route
