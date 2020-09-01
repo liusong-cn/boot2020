@@ -1,3 +1,66 @@
 spring:
   profiles:
-    active: dev
+    active: my_route
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.5.210:8848
+---
+server:
+  port: 9050
+
+spring:
+  profiles: method_route
+  application:
+    name: gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          #和服务注册发现结合，后续可以使用服务名来调用服务
+          enabled: true
+      routes:
+        - id: method_route
+          uri: https://example.com
+          predicates:
+            - Method=GET
+
+---
+server:
+  port: 9050
+
+spring:
+  profiles: param_route
+  application:
+    name: gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          #和服务注册发现结合，后续可以使用服务名来调用服务
+          enabled: true
+      routes:
+        - id: param_route
+          uri: https://example.com
+          predicates:
+            #需含有参数名为red，值匹配gree. 格式，格式为正则
+            - Query=red, gree.[a-z]{2}
+---
+server:
+  port: 9050
+
+spring:
+  profiles: my_route
+  application:
+    name: gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          #和服务注册发现结合，后续可以使用服务名来调用服务
+          enabled: true
+      routes:
+        - id: my_route
+          uri: https://example.com
+          predicates:
+            - My=custom
