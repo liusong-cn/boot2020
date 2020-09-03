@@ -14,6 +14,7 @@
     <module>common</module>
       <module>activity</module>
       <module>gateway</module>
+    <module>common-security</module>
   </modules>
 
   <name>Maven</name>
@@ -58,7 +59,7 @@
         <type>pom</type>
         <scope>import</scope>
       </dependency>
-      <!--spring cloud Hoxton.SR1-->
+      <!--spring cloud Hoxton.SR5-->
       <dependency>
         <groupId>org.springframework.cloud</groupId>
         <artifactId>spring-cloud-dependencies</artifactId>
