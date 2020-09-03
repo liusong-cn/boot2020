@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.util.StringUtils;
 
 /**
  * @author:11411
@@ -32,7 +33,10 @@ public class UserDetailService implements UserDetailsService {
         MyUser user  = new MyUser();
         user.setUserName(s);
         user.setPassword(passwordEncoder.encode("123"));
+        //增加权限设置
+        String authorityString = StringUtils.endsWithIgnoreCase(s,"song") == true?"admin":"none";
         return new User(user.getUserName(),user.getPassword(),user.isEnabled(),user.isAccountNonExpired(),
-                user.isCredentialsNonExpired(),user.isAccountNonLocked(), AuthorityUtils.commaSeparatedStringToAuthorityList("admin"));
+                user.isCredentialsNonExpired(),user.isAccountNonLocked(),
+                AuthorityUtils.commaSeparatedStringToAuthorityList(authorityString));
     }
 }
