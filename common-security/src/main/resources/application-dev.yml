@@ -3,6 +3,16 @@ server:
 spring:
   application:
     name: security9060
+  redis:
+    database: 0
+    host: 192.168.5.210
+    port: 6379
+    password:
+    jedis:
+      pool:
+        max-active: 8
+        max-idle: 8
+        min-idle: 0
 #代码中已有，避免重复配置
 #security:
 #  oauth2:
