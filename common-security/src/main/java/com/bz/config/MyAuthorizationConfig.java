@@ -11,6 +11,7 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.A
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
+import org.springframework.security.oauth2.provider.token.TokenStore;
 
 /**
  * @author:11411
@@ -31,6 +32,9 @@ public class MyAuthorizationConfig extends AuthorizationServerConfigurerAdapter 
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    @Autowired
+    private TokenStore redisTokenStore;
+
     /**
      *
      * @param endpoints
@@ -39,7 +43,8 @@ public class MyAuthorizationConfig extends AuthorizationServerConfigurerAdapter 
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
         endpoints.authenticationManager(authenticationManager)//配置认证管理器，则security定义的鉴权被忽略
-                .userDetailsService(userDetailService);//password模式必须配置鉴权
+                .userDetailsService(userDetailService)//password模式必须配置鉴权
+                .tokenStore(redisTokenStore);//redis存储token
     }
 
     @Override

@@ -25,6 +25,7 @@ public class MyController {
     }
 
     @GetMapping("/resource")
+    @PreAuthorize("hasAnyRole('manager')")
     public String passwordType(){
         return "通过鉴权";
     }
