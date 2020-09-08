@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -23,9 +24,6 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @Configuration
 //开启方法中使用注解进行权限控制
 @EnableGlobalMethodSecurity(prePostEnabled = true)
-//结合oauth2创建授权服务器
-@EnableAuthorizationServer
-@Order(2)
 public class MySecurityConfig extends WebSecurityConfigurerAdapter {
 
     //自定义权限不足handler
@@ -46,12 +44,12 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
 
 //        super.configure(http);
         http.authorizeRequests()
-                .antMatchers("/hello")
-                .permitAll()
+                .antMatchers("/hello","/login")
+                .permitAll()//放权特定url
                 .and()
                 .authorizeRequests()
                 .anyRequest()
-                .authenticated()
+                .authenticated()//任意请求都需要鉴权
                 .and()
                 .formLogin();
     }
@@ -61,5 +59,10 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
-
+    //认证管理器
+    @Override
+    @Bean
+    public AuthenticationManager authenticationManagerBean() throws Exception {
+        return super.authenticationManagerBean();
+    }
 }

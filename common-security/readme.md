@@ -1,0 +1,3 @@
+## oauth2注意事项
+- 授权码模式客户端需配置autoapprove属性
+- 通过code取token时需要注意post方式在header中加入Authorization=Basic client_id:client_secret，其中client_id:client_secret为base64加密后，Basic后有一个空格

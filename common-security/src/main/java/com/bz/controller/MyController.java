@@ -4,6 +4,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  * @author:11411
@@ -21,5 +22,19 @@ public class MyController {
     @PreAuthorize("hasAnyAuthority('admin')")
     public String authenticated(){
         return "authenticated";
+    }
+
+    @GetMapping("/resource")
+    public String passwordType(){
+        return "通过鉴权";
+    }
+
+    /**
+     * 自定义登录页面
+     * @return
+     */
+    @GetMapping("/login")
+    public ModelAndView login(){
+        return new ModelAndView("login");
     }
 }
