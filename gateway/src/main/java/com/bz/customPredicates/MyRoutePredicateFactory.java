@@ -21,6 +21,7 @@ public class MyRoutePredicateFactory extends AbstractRoutePredicateFactory<MyRou
     }
 
     //自定义一个predicate,要求request中必须包含指定名称的参数
+    //参数名在yml中通过 My=参数名 指定，My指MyRoutePredicateFactory裁剪后，由gateway规则设定
     @Override
     public Predicate<ServerWebExchange> apply(Config config) {
         return exchange -> {
@@ -28,6 +29,11 @@ public class MyRoutePredicateFactory extends AbstractRoutePredicateFactory<MyRou
         };
     }
 
+    /**
+     * name对应config中属性名name
+     * 将config的属性排序，接收配置参数
+     * @return
+     */
     @Override
     public List<String> shortcutFieldOrder() {
         return Collections.singletonList("name");
