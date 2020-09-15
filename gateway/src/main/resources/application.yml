@@ -1,6 +1,6 @@
 spring:
   profiles:
-    active: param_route
+    active: gatewayFilter
   application:
     name: gateway9050
   cloud:
@@ -12,7 +12,14 @@ spring:
         locator:
           #和服务注册发现结合，后续可以使用服务名来调用服务
           enabled: true
-
+      # 配置默认filters
+      default-filters:
+        # 添加Hystrix
+        - name: Hystrix
+          args:
+            name: fallbackcmd
+            # 转到自定义的fallbackController
+            fallbackUri: forward:/fallbackController
 server:
   port: 9050
 ---
@@ -36,7 +43,8 @@ spring:
     gateway:
       routes:
         - id: param_route
-          uri: https://example.com
+          # 负载均衡且order9003为注册中心中微服务名，需结合spring.cloud.gateway.discovery.locator.enabled=true
+          uri: lb://order9003
           predicates:
             #“.” 匹配任意字符
             - Query=red, gree.
@@ -53,3 +61,22 @@ spring:
           #自定义filter
           predicates:
             - My=custom
+
+---
+#配置filter
+spring:
+  profiles: gatewayFilter
+  cloud:
+    gateway:
+      routes:
+        - id: gateway_filter
+          uri: lb://order9003
+          predicates:
+            - Method=GET
+          filters:
+            # 添加请求头，可组合使用
+            - AddRequestHeader=X-Request-red, blue
+            # 添加请求参数
+            - AddRequestParameter=red, pink
+            # 添加返回的header
+            - AddResponseHeader=X-Request-Red, Blue
