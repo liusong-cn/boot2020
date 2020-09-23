@@ -1,6 +1,5 @@
 package com.bz.util;
 
-import com.bz.Application;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;

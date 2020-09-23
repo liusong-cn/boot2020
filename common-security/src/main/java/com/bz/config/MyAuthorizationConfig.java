@@ -32,8 +32,8 @@ public class MyAuthorizationConfig extends AuthorizationServerConfigurerAdapter 
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    @Autowired
-    private TokenStore redisTokenStore;
+//    @Autowired
+//    private TokenStore redisTokenStore;
 
     /**
      *
@@ -43,8 +43,8 @@ public class MyAuthorizationConfig extends AuthorizationServerConfigurerAdapter 
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
         endpoints.authenticationManager(authenticationManager)//配置认证管理器，则security定义的鉴权被忽略
-                .userDetailsService(userDetailService)//password模式必须配置鉴权
-                .tokenStore(redisTokenStore);//redis存储token
+                .userDetailsService(userDetailService);//password模式必须配置鉴权
+//                .tokenStore(redisTokenStore);//redis存储token
     }
 
     @Override
