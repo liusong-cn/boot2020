@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bz.test.SysOperLogDao">
+  <resultMap id="BaseResultMap" type="com.bz.test.SysOperLog">
+    <id column="oper_id" jdbcType="BIGINT" property="operId" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="business_type" jdbcType="INTEGER" property="businessType" />
+    <result column="method" jdbcType="VARCHAR" property="method" />
+    <result column="oper_name" jdbcType="VARCHAR" property="operName" />
+    <result column="oper_dept" jdbcType="VARCHAR" property="operDept" />
+    <result column="oper_url" jdbcType="VARCHAR" property="operUrl" />
+    <result column="oper_ip" jdbcType="VARCHAR" property="operIp" />
+    <result column="oper_location" jdbcType="VARCHAR" property="operLocation" />
+    <result column="oper_time" jdbcType="TIMESTAMP" property="operTime" />
+    <result column="error_msg" jdbcType="VARCHAR" property="errorMsg" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    oper_id, title, business_type, `method`, oper_name, oper_dept, oper_url, oper_ip, 
+    oper_location, oper_time, error_msg
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_oper_log
+    where oper_id = #{operId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from sys_oper_log
+    where oper_id = #{operId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="oper_id" keyProperty="operId" parameterType="com.bz.test.SysOperLog" useGeneratedKeys="true">
+    insert into sys_oper_log (title, business_type, `method`, 
+      oper_name, oper_dept, oper_url, 
+      oper_ip, oper_location, oper_time, 
+      error_msg)
+    values (#{title,jdbcType=VARCHAR}, #{businessType,jdbcType=INTEGER}, #{method,jdbcType=VARCHAR}, 
+      #{operName,jdbcType=VARCHAR}, #{operDept,jdbcType=VARCHAR}, #{operUrl,jdbcType=VARCHAR}, 
+      #{operIp,jdbcType=VARCHAR}, #{operLocation,jdbcType=VARCHAR}, #{operTime,jdbcType=TIMESTAMP}, 
+      #{errorMsg,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="oper_id" keyProperty="operId" parameterType="com.bz.test.SysOperLog" useGeneratedKeys="true">
+    insert into sys_oper_log
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="title != null">
+        title,
+      </if>
+      <if test="businessType != null">
+        business_type,
+      </if>
+      <if test="method != null">
+        `method`,
+      </if>
+      <if test="operName != null">
+        oper_name,
+      </if>
+      <if test="operDept != null">
+        oper_dept,
+      </if>
+      <if test="operUrl != null">
+        oper_url,
+      </if>
+      <if test="operIp != null">
+        oper_ip,
+      </if>
+      <if test="operLocation != null">
+        oper_location,
+      </if>
+      <if test="operTime != null">
+        oper_time,
+      </if>
+      <if test="errorMsg != null">
+        error_msg,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="businessType != null">
+        #{businessType,jdbcType=INTEGER},
+      </if>
+      <if test="method != null">
+        #{method,jdbcType=VARCHAR},
+      </if>
+      <if test="operName != null">
+        #{operName,jdbcType=VARCHAR},
+      </if>
+      <if test="operDept != null">
+        #{operDept,jdbcType=VARCHAR},
+      </if>
+      <if test="operUrl != null">
+        #{operUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="operIp != null">
+        #{operIp,jdbcType=VARCHAR},
+      </if>
+      <if test="operLocation != null">
+        #{operLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="operTime != null">
+        #{operTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="errorMsg != null">
+        #{errorMsg,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bz.test.SysOperLog">
+    update sys_oper_log
+    <set>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="businessType != null">
+        business_type = #{businessType,jdbcType=INTEGER},
+      </if>
+      <if test="method != null">
+        `method` = #{method,jdbcType=VARCHAR},
+      </if>
+      <if test="operName != null">
+        oper_name = #{operName,jdbcType=VARCHAR},
+      </if>
+      <if test="operDept != null">
+        oper_dept = #{operDept,jdbcType=VARCHAR},
+      </if>
+      <if test="operUrl != null">
+        oper_url = #{operUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="operIp != null">
+        oper_ip = #{operIp,jdbcType=VARCHAR},
+      </if>
+      <if test="operLocation != null">
+        oper_location = #{operLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="operTime != null">
+        oper_time = #{operTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="errorMsg != null">
+        error_msg = #{errorMsg,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where oper_id = #{operId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bz.test.SysOperLog">
+    update sys_oper_log
+    set title = #{title,jdbcType=VARCHAR},
+      business_type = #{businessType,jdbcType=INTEGER},
+      `method` = #{method,jdbcType=VARCHAR},
+      oper_name = #{operName,jdbcType=VARCHAR},
+      oper_dept = #{operDept,jdbcType=VARCHAR},
+      oper_url = #{operUrl,jdbcType=VARCHAR},
+      oper_ip = #{operIp,jdbcType=VARCHAR},
+      oper_location = #{operLocation,jdbcType=VARCHAR},
+      oper_time = #{operTime,jdbcType=TIMESTAMP},
+      error_msg = #{errorMsg,jdbcType=VARCHAR}
+    where oper_id = #{operId,jdbcType=BIGINT}
+  </update>
+</mapper>

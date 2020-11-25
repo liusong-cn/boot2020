@@ -48,7 +48,6 @@ public class ShiroConfig {
         filterchainDefinationMap.put("/login","anon");
         //配置其余url都需要认证
         filterchainDefinationMap.put("/**","authc");
-
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterchainDefinationMap);
         return shiroFilterFactoryBean;
     }
