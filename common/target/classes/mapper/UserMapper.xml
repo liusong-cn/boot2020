@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bz.mapper.UserMapper">
+    <resultMap type="com.bz.entity.User" id="UserResult">
+        <id column="id" property="id" javaType="java.lang.Integer" jdbcType="NUMERIC"/>
+        <result column="name" property="name" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result column="password" property="password" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result column="age" property="age" javaType="java.lang.Integer" jdbcType="NUMERIC"/>
+        <collection property="roles" javaType="java.util.List" resultMap="RoleResult"/>
+    </resultMap>
+    <resultMap id="RoleResult" type="com.bz.entity.Role">
+        <id column="role_id" property="roleId"/>
+        <result column="role_name" property="roleName"/>
+    </resultMap>
+    <select id="findByUserName" resultMap="UserResult" parameterType="String">
+        select u.id,u.age,u.name,u.password, r.role_id, r.role_name from user u inner join user_role ur on u.id = ur.user_id
+            inner join role r on ur.role_id = r.role_id where u.name = #{userName}
+    </select>
+</mapper>

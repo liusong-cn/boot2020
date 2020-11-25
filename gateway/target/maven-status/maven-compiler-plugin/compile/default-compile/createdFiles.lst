@@ -1,0 +1,4 @@
+com\bz\customPredicates\MyRoutePredicateFactory$Config.class
+com\bz\customPredicates\MyRoutePredicateFactory.class
+com\bz\controller\FallbackController.class
+com\bz\GateWayApplication.class
