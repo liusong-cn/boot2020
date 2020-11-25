@@ -1,0 +1,10 @@
+## oauth2注意事项
+- 授权码模式客户端需配置autoapprove属性
+- 通过code取token时需要注意post方式在header中
+加入Authorization=Basic client_id:client_secret，
+其中client_id:client_secret为base64加密后，Basic后有一个空格
+- 密码模式通过账号密码直接获取token，通过token请求资源
+- 之前可以使用授权码模式获得token，但是在请求资源时会出现unauthorized
+配置了认证服务MyAuthorizationConfig.endpoints（）后导致无法访问自带的
+登录页，即使配置了相关页面的放权。因此后续需要再自定义一套登录，目前只能
+使用password模式

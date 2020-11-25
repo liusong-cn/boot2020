@@ -11,6 +11,11 @@
   <modules>
     <module>payment</module>
       <module>order</module>
+    <module>common</module>
+      <module>activity</module>
+      <module>gateway</module>
+    <module>common-security</module>
+      <module>redis</module>
   </modules>
 
   <name>Maven</name>
@@ -55,7 +60,7 @@
         <type>pom</type>
         <scope>import</scope>
       </dependency>
-      <!--spring cloud Hoxton.SR1-->
+      <!--spring cloud Hoxton.SR5-->
       <dependency>
         <groupId>org.springframework.cloud</groupId>
         <artifactId>spring-cloud-dependencies</artifactId>
@@ -131,13 +136,38 @@
       <!--Shiro核心框架 -->
       <dependency>
         <groupId>org.apache.shiro</groupId>
-        <artifactId>shiro-core</artifactId>
+        <artifactId>shiro-spring</artifactId>
         <version>${shiro.version}</version>
       </dependency>
 
 
     </dependencies>
   </dependencyManagement>
+  <dependencies>
+    <dependency>
+      <groupId>log4j</groupId>
+      <artifactId>log4j</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>io.springfox</groupId>
+      <artifactId>springfox-swagger2</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>io.springfox</groupId>
+      <artifactId>springfox-swagger-ui</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <!--java工具集-->
+    <dependency>
+      <groupId>cn.hutool</groupId>
+      <artifactId>hutool-all</artifactId>
+    </dependency>
+
+  </dependencies>
 
   <build>
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->

@@ -1,0 +1,27 @@
+server:
+  port: 9060
+spring:
+  application:
+    name: security9060
+  redis:
+    database: 0
+    host: 192.168.5.210
+    port: 6379
+    password: 123456!
+    jedis:
+      pool:
+        max-active: 8
+        max-idle: 8
+        min-idle: 0
+#代码中已有，避免重复配置
+#security:
+#  oauth2:
+#    client:
+#      #自定义oauth2的客户端id password
+#      client-id: security
+#      client-secret: security1234
+#      registered-redirect-uri: http://www.baidu.com
+#      #可选，表示自定义的scope
+#      scope: [all,abc,check]
+#      #允许进入自动授权
+#      auto-approve-scopes: true

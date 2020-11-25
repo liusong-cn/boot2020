@@ -1,17 +1,16 @@
 package com.bz;
 
-import org.springframework.boot.builder.SpringApplicationBuilder;
-import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
  * @author:11411
- * @date: 2020/8/12 10:09
+ * @date: 2020/8/12 11:31
  **/
-public class Application extends SpringBootServletInitializer {
+@SpringBootApplication
+public class Application {
 
-
-    @Override
-    protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
-        return builder.sources(CommonApplication.class);
+    public static void main(String[] args) {
+        SpringApplication.run(Application.class);
     }
 }

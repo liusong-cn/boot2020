@@ -1,0 +1,82 @@
+spring:
+  profiles:
+    active: gatewayFilter
+  application:
+    name: gateway9050
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.5.210:8848
+    gateway:
+      discovery:
+        locator:
+          #和服务注册发现结合，后续可以使用服务名来调用服务
+          enabled: true
+      # 配置默认filters
+      default-filters:
+        # 添加Hystrix
+        - name: Hystrix
+          args:
+            name: fallbackcmd
+            # 转到自定义的fallbackController
+            fallbackUri: forward:/fallbackController
+server:
+  port: 9050
+---
+
+
+spring:
+  profiles: method_route
+  cloud:
+    gateway:
+      routes:
+        - id: method_route
+          uri: https://example.com
+          predicates:
+            - Method=GET
+
+---
+
+spring:
+  profiles: param_route
+  cloud:
+    gateway:
+      routes:
+        - id: param_route
+          # 负载均衡且order9003为注册中心中微服务名，需结合spring.cloud.gateway.discovery.locator.enabled=true
+          uri: lb://order9003
+          predicates:
+            #“.” 匹配任意字符
+            - Query=red, gree.
+            #需含有参数名为red，值匹配gree 格式，格式为正则
+#            - Query=red, gree[a-z]{2}
+---
+spring:
+  profiles: my_route
+  cloud:
+    gateway:
+      routes:
+        - id: my_route
+          uri: https://www.hao123.com/
+          #自定义filter
+          predicates:
+            - My=custom
+
+---
+#配置filter
+spring:
+  profiles: gatewayFilter
+  cloud:
+    gateway:
+      routes:
+        - id: gateway_filter
+          uri: lb://order9003
+          predicates:
+            - Method=GET
+          filters:
+            # 添加请求头，可组合使用
+            - AddRequestHeader=X-Request-red, blue
+            # 添加请求参数
+            - AddRequestParameter=red, pink
+            # 添加返回的header
+            - AddResponseHeader=X-Request-Red, Blue

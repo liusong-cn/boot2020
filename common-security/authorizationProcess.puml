@@ -1,0 +1,16 @@
+@startuml
+(*) --> "用户请求"
+if "请求头是否带有client信息" then
+    -->[true] "通过redis取得client信息进行校验"
+    if "请求中client信息是否匹配" then
+        -r-> [false] "抛异常"
+        --> (*)
+    else
+        --> [true] "生成token"
+        --> (*)
+    endif
+else
+    -> [false]"返回错误信息"
+    --> [直接结束] (*)
+endif
+@enduml

@@ -1,0 +1,27 @@
+{
+  "name" : "SysUserRole",
+  "originTableName" : "sys_user_role",
+  "comment" : null,
+  "fullColumn" : [ {
+    "name" : "userId",
+    "comment" : null,
+    "type" : null,
+    "shortType" : null,
+    "ktShortType" : "Long",
+    "custom" : false,
+    "ext" : { }
+  }, {
+    "name" : "roleId",
+    "comment" : null,
+    "type" : null,
+    "shortType" : null,
+    "ktShortType" : "Long",
+    "custom" : false,
+    "ext" : { }
+  } ],
+  "pkColumn" : null,
+  "otherColumn" : null,
+  "savePackageName" : "com.bz.entity",
+  "savePath" : "./common/src/main/java/com/bz/entity",
+  "saveModelName" : "common"
+}

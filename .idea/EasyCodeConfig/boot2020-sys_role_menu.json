@@ -1,0 +1,27 @@
+{
+  "name" : "SysRoleMenu",
+  "originTableName" : "sys_role_menu",
+  "comment" : null,
+  "fullColumn" : [ {
+    "name" : "roleId",
+    "comment" : null,
+    "type" : null,
+    "shortType" : null,
+    "ktShortType" : "Long",
+    "custom" : false,
+    "ext" : { }
+  }, {
+    "name" : "menuId",
+    "comment" : null,
+    "type" : null,
+    "shortType" : null,
+    "ktShortType" : "Long",
+    "custom" : false,
+    "ext" : { }
+  } ],
+  "pkColumn" : null,
+  "otherColumn" : null,
+  "savePackageName" : "com.bz.entity",
+  "savePath" : "./common/src/main/java/com/bz/entity",
+  "saveModelName" : "common"
+}

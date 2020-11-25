@@ -3,7 +3,7 @@ package com.bz.entity;
 import lombok.Data;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.util.List;
 
 /**
  * @author:11411
@@ -11,6 +11,8 @@ import java.util.Date;
  **/
 @Data
 public class User implements Serializable {
+
+    private static final Long serialVersionUID = 2l;
 
     private int id;
 
@@ -24,4 +26,6 @@ public class User implements Serializable {
      * 用户所属角色组
      */
     private int[] roleIds;
+
+    private List<Role> roles;
 }

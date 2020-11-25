@@ -2,16 +2,20 @@ package com.bz.entity;
 
 import lombok.Data;
 
+import java.io.Serializable;
+
 /**
  * @author:11411
  * @date: 2020/7/24 15:11
  **/
 @Data
-public class Role {
+public class Role implements Serializable {
 
-    private int id;
+    private static final Long serialVersionUID = 2l;
 
-    private String name;
+    private int roleId;
+
+    private String roleName;
 
     private int[] permissionIds;
 }
