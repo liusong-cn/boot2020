@@ -14,10 +14,8 @@
         <module name="payment" />
         <module name="common-security" />
         <module name="activity" />
+        <module name="generator" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="common" target="8" />
-    </bytecodeTargetLevel>
   </component>
 </project>

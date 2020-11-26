@@ -16,6 +16,7 @@
       <module>gateway</module>
     <module>common-security</module>
       <module>redis</module>
+      <module>generator</module>
   </modules>
 
   <name>Maven</name>
