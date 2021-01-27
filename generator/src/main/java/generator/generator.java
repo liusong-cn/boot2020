@@ -1,13 +1,15 @@
 package generator;
 
 import com.baomidou.mybatisplus.core.exceptions.MybatisPlusException;
+import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.baomidou.mybatisplus.generator.AutoGenerator;
 import com.baomidou.mybatisplus.generator.config.DataSourceConfig;
 import com.baomidou.mybatisplus.generator.config.GlobalConfig;
 import com.baomidou.mybatisplus.generator.config.PackageConfig;
 import com.baomidou.mybatisplus.generator.config.StrategyConfig;
+import com.baomidou.mybatisplus.generator.config.TemplateConfig;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
-import org.apache.commons.lang3.StringUtils;
+import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
 
 import java.util.Scanner;
 
@@ -18,7 +20,7 @@ import java.util.Scanner;
  **/
 public class generator {
     public static void main(String[] args) {
-        AutoGenerator  autoGenerator = new AutoGenerator();
+        AutoGenerator autoGenerator = new AutoGenerator();
 
         GlobalConfig globalConfig = new GlobalConfig();
         globalConfig.setOutputDir(System.getProperty("user.dir") + "/generator/src/main/java");
@@ -35,6 +37,13 @@ public class generator {
         dataSourceConfig.setPassword("root");
         autoGenerator.setDataSource(dataSourceConfig);
 
+        //自定义controller模板，目前在多module情况下模板位置设置不正确，单体项目可使用该方法
+//        TemplateConfig templateConfig = new TemplateConfig()
+//                .setController("templates/controller2.java");
+//        System.out.println(System.getProperty("user.dir")+ "/generator/src/main/resources/templates/freemarker/controller.java.ftl");
+//        autoGenerator.setTemplate(templateConfig);
+//        autoGenerator.setTemplateEngine(new FreemarkerTemplateEngine());
+
         // 包配置
         PackageConfig pc = new PackageConfig();
 //        pc.setModuleName(scanner("模块名"));
@@ -45,7 +54,7 @@ public class generator {
         StrategyConfig strategy = new StrategyConfig();
         strategy.setNaming(NamingStrategy.underline_to_camel);
         //设置需要生成代码的表名，为字符数组。默认生成全库
-//        strategy.setInclude("");
+        strategy.setInclude("sys_dept");
         strategy.setColumnNaming(NamingStrategy.underline_to_camel);
 //        strategy.setSuperEntityClass("你自己的父类实体,没有就不用设置!");
         strategy.setEntityLombokModel(true);
