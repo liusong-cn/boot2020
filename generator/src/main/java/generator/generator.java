@@ -38,11 +38,11 @@ public class generator {
         autoGenerator.setDataSource(dataSourceConfig);
 
         //自定义controller模板，目前在多module情况下模板位置设置不正确，单体项目可使用该方法
-//        TemplateConfig templateConfig = new TemplateConfig()
-//                .setController("templates/controller2.java");
-//        System.out.println(System.getProperty("user.dir")+ "/generator/src/main/resources/templates/freemarker/controller.java.ftl");
-//        autoGenerator.setTemplate(templateConfig);
-//        autoGenerator.setTemplateEngine(new FreemarkerTemplateEngine());
+        TemplateConfig templateConfig = new TemplateConfig()
+                .setController("templates/controller.java");
+        System.out.println(System.getProperty("user.dir")+ "/generator/src/main/resources/templates/freemarker/controller.java.ftl");
+        autoGenerator.setTemplate(templateConfig);
+        autoGenerator.setTemplateEngine(new FreemarkerTemplateEngine());
 
         // 包配置
         PackageConfig pc = new PackageConfig();

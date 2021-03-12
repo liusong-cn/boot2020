@@ -1,11 +1,14 @@
 package ${package.Controller};
 
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import io.swagger.annotations.ApiOperation;
-import com.github.pagehelper.PageHelper;
+
+import org.springframework.web.bind.annotation.*;
+import ${package.Service}.${table.serviceName};
 import org.springframework.beans.factory.annotation.Autowired;
+import java.util.List;
+import java.lang.String;
+import ${package.Entity}.${table.entityName};
+import org.springframework.web.bind.annotation.RequestParam;
+import io.swagger.annotations.ApiOperation;
 <#if restControllerStyle>
 import org.springframework.web.bind.annotation.RestController;
 <#else>
@@ -38,15 +41,16 @@ public class ${table.controllerName} extends ${superControllerClass} {
 public class ${table.controllerName} {
 </#if>
 
-   @Autowired
-   private ${table.serviceName} ${table.serviceName?uncap_first};
+    @Autowired
+    public ${table.serviceName} ${table.entityName}Service;
 
-   @PostMappring("/list_${table}")
-   @ApiOperation("分页查询${table}")
-   public String list${table?cap_first}(@RequestParam(defaultValue = "1") Integer currPage,
-                                        @RequestParam(defaultValue = "10") Integer pageSize,
-                                        @RequestParam(defaultValue = "") String keyword){
-       PageHelper.startPage(page, pageSize);
-   }
+
+    @ApiOperation("${table.entityName}-列表")
+    @GetMapping(value = "/list")
+    public List<${table.entityName}> queryList(@RequestParam("searchVal")String searchVal){
+        return ${table.entityName}Service.queryList(searchVal);
+    }
+
+
 }
 </#if>
