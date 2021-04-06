@@ -12,10 +12,16 @@
         <module name="common" />
         <module name="order" />
         <module name="payment" />
+        <module name="tech-study" />
         <module name="common-security" />
         <module name="activity" />
         <module name="generator" />
       </profile>
     </annotationProcessing>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="tech-study" options="-parameters" />
+    </option>
   </component>
 </project>

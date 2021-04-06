@@ -4,11 +4,17 @@
     <data-source source="LOCAL" name="boot2020@localhost" uuid="2d946101-3bc5-478c-a9f1-99fa578844c8">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
-      <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://localhost:3306/boot2020</jdbc-url>
       <driver-properties>
         <property name="serverTimezone" value="Asia/Shanghai" />
       </driver-properties>
+    </data-source>
+    <data-source source="LOCAL" name="MySQL - db1@47.108.133.131" uuid="11d280f4-5bf3-40de-983f-dafefd280092">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://47.108.133.131:3306/db1</jdbc-url>
     </data-source>
   </component>
 </project>
