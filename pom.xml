@@ -44,7 +44,7 @@
     <swagger.version>2.9.2</swagger.version>
     <lombok.version>1.18.4</lombok.version>
     <hutool.version>4.5.10</hutool.version>
-    <shiro.version>1.4.0</shiro.version>
+    <shiro.version>1.7.1</shiro.version>
   </properties>
   <dependencyManagement>
     <dependencies>
