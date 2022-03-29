@@ -17,6 +17,7 @@
     <module>common-security</module>
       <module>redis</module>
       <module>generator</module>
+      <module>test</module>
   </modules>
 
   <name>Maven</name>
